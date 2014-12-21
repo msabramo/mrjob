@@ -23,7 +23,7 @@ import random
 import shutil
 from subprocess import PIPE
 from subprocess import Popen
-from StringIO import StringIO
+from six.moves import StringIO
 import tarfile
 import tempfile
 

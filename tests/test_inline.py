@@ -18,7 +18,7 @@
 
 from __future__ import with_statement
 
-from StringIO import StringIO
+from six.moves import StringIO
 
 import gzip
 import os

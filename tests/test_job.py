@@ -20,7 +20,7 @@ from __future__ import with_statement
 import os
 from subprocess import Popen
 from subprocess import PIPE
-from StringIO import StringIO
+from six.moves import StringIO
 import sys
 import time
 

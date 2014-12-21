@@ -13,7 +13,7 @@
 # limitations under the License.
 """Utilities to compress data in memory."""
 import gzip
-from StringIO import StringIO
+from six.moves import StringIO
 
 
 # use bz2.compress() to compress bz2 data

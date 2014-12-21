@@ -13,7 +13,7 @@
 # limitations under the License.
 from __future__ import with_statement
 
-from StringIO import StringIO
+from six.moves import StringIO
 
 from tests.sandbox import SandboxedTestCase
 

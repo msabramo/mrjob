@@ -67,14 +67,14 @@ class SSHFSTestCase(MockSubprocessTestCase):
     def test_ls_basic_2(self):
         self.make_master_file('f', 'contents')
         self.make_master_file('f2', 'contents')
-        self.assertItemsEqual(list(self.fs.ls('ssh://testmaster/')),
-                              ['ssh://testmaster/f', 'ssh://testmaster/f2'])
+        self.assertListEqual(list(self.fs.ls('ssh://testmaster/')),
+                             ['ssh://testmaster/f', 'ssh://testmaster/f2'])
 
     def test_ls_recurse(self):
         self.make_master_file('f', 'contents')
         self.make_master_file('d/f2', 'contents')
-        self.assertItemsEqual(list(self.fs.ls('ssh://testmaster/')),
-                              ['ssh://testmaster/f', 'ssh://testmaster/d/f2'])
+        self.assertListEqual(list(self.fs.ls('ssh://testmaster/')),
+                             ['ssh://testmaster/f', 'ssh://testmaster/d/f2'])
 
     def test_cat_uncompressed(self):
         self.make_master_file(os.path.join('data', 'foo'), 'foo\nfoo\n')

@@ -15,7 +15,7 @@
 from datetime import date
 from datetime import datetime
 from datetime import timedelta
-from StringIO import StringIO
+from six.moves import StringIO
 import sys
 
 import boto.emr.connection

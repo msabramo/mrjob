@@ -14,8 +14,13 @@
 
 from __future__ import with_statement
 
-from StringIO import StringIO
 import sys
+
+import pytest
+if sys.version_info > (3,):
+    pytest.skip(
+        "emr not supported on Python 3, b/c of boto not supporting Python 3")
+from six.moves import StringIO
 
 from mrjob.emr import EMRJobRunner
 

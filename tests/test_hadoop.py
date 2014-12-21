@@ -17,7 +17,7 @@
 
 from __future__ import with_statement
 
-from StringIO import StringIO
+from six.moves import StringIO
 import getpass
 import os
 import pty

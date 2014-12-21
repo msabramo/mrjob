@@ -17,7 +17,7 @@
 
 from __future__ import with_statement
 
-from StringIO import StringIO
+from six.moves import StringIO
 from datetime import datetime
 from datetime import timedelta
 import sys

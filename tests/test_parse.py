@@ -16,7 +16,7 @@ from __future__ import with_statement
 
 import logging
 import sys
-from StringIO import StringIO
+from six.moves import StringIO
 from subprocess import PIPE
 from subprocess import Popen
 

@@ -29,7 +29,7 @@ import os
 import os.path
 import posixpath
 import shutil
-from StringIO import StringIO
+from six.moves import StringIO
 import tempfile
 import time
 

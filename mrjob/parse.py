@@ -18,23 +18,26 @@ from functools import wraps
 import logging
 import re
 import time
-from urlparse import ParseResult
-from urlparse import urlparse as urlparse_buggy
+
+import six
+from six.moves.urllib.parse import ParseResult
+from six.moves.urllib.parse import urlparse as urlparse_buggy
 
 try:
     from cStringIO import StringIO
     StringIO  # quiet "redefinition of unused ..." warning from pyflakes
 except ImportError:
-    from StringIO import StringIO
+    from six.moves import StringIO
 
 from mrjob.compat import uses_020_counters
 
-try:
-    import boto.utils
-except ImportError:
-    # don't require boto; MRJobs don't actually need it when running
-    # inside hadoop streaming
-    boto = None
+if not six.PY3:
+    try:
+        import boto.utils
+    except ImportError:
+        # don't require boto; MRJobs don't actually need it when running
+        # inside hadoop streaming
+        boto = None
 
 # match the filename of a hadoop streaming jar
 HADOOP_STREAMING_JAR_RE = re.compile(r'^hadoop.*streaming.*\.jar$')

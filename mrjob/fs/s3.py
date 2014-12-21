@@ -16,13 +16,16 @@ import logging
 import posixpath
 import socket
 
-try:
-    import boto
-    boto  # quiet "redefinition of unused ..." warning from pyflakes
-except ImportError:
-    # don't require boto; MRJobs don't actually need it when running
-    # inside hadoop streaming
-    boto = None
+import six
+
+if not six.PY3:
+    try:
+        import boto
+        boto  # quiet "redefinition of unused ..." warning from pyflakes
+    except ImportError:
+        # don't require boto; MRJobs don't actually need it when running
+        # inside hadoop streaming
+        boto = None
 
 from mrjob.fs.base import Filesystem
 from mrjob.parse import is_s3_uri
@@ -242,7 +245,7 @@ class S3Filesystem(Filesystem):
 
         try:
             bucket = s3_conn.get_bucket(bucket_name)
-        except boto.exception.S3ResponseError, e:
+        except boto.exception.S3ResponseError as e:
             if e.status != 404:
                 raise e
             key = None

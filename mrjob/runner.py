@@ -37,7 +37,7 @@ try:
     from cStringIO import StringIO
     StringIO  # quiet "redefinition of unused ..." warning from pyflakes
 except ImportError:
-    from StringIO import StringIO
+    from six.moves import StringIO
 
 try:
     import simplejson as json
@@ -508,7 +508,7 @@ class MRJobRunner(object):
             log.info('removing tmp directory %s' % self._local_tmp_dir)
             try:
                 shutil.rmtree(self._local_tmp_dir)
-            except OSError, e:
+            except OSError as e:
                 log.exception(e)
 
         self._local_tmp_dir = None

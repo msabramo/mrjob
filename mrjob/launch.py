@@ -27,7 +27,7 @@ try:
     from cStringIO import StringIO
     StringIO  # quiet "redefinition of unused ..." warning from pyflakes
 except ImportError:
-    from StringIO import StringIO
+    from six.moves import StringIO
 
 from mrjob.conf import combine_dicts
 from mrjob.options import add_basic_opts
@@ -424,7 +424,7 @@ class MRJobLauncher(object):
         if self.options.ssh_bind_ports:
             try:
                 ports = parse_port_range_list(self.options.ssh_bind_ports)
-            except ValueError, e:
+            except ValueError as e:
                 self.option_parser.error('invalid port range list "%s": \n%s' %
                                          (self.options.ssh_bind_ports,
                                           e.args[0]))
@@ -668,7 +668,7 @@ class MRJobLauncher(object):
 
         More complex testing example::
 
-            from StringIO import StringIO
+            from six.moves import StringIO
 
             from mrjob.parse import parse_mr_job_stderr
             from mrjob.protocol import JSONProtocol

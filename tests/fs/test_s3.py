@@ -14,11 +14,14 @@
 import bz2
 import os
 
-try:
-    import boto
-    boto  # pyflakes
-except ImportError:
-    boto = None
+import six
+
+if not six.PY3:
+    try:
+        import boto
+        boto  # pyflakes
+    except ImportError:
+        boto = None
 
 from mrjob.fs.s3 import S3Filesystem
 
